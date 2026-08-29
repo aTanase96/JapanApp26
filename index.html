@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22-Day Japan Expedition: Master Daily Schedule</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #e11d48;
+            --accent-light: #ffe4e6;
+            --bg-subtle: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --morning: #3b82f6;
+            --lunch: #f59e0b;
+            --afternoon: #10b981;
+            --shopping: #8b5cf6;
+            --evening: #e11d48;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Header Bar */
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 40px 50px;
+            position: relative;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        header .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 16px;
+            max-width: 800px;
+        }
+
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 12px 25px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-btn {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+
+        .ai-day-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .ai-day-btn {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .ai-day-btn:hover {
+            background: #e0e7ff;
+            color: #4338ca;
+            border-color: #a5b4fc;
+        }
+
+        .ai-day-btn.audio-btn:hover {
+            background: #fce7f3;
+            color: #be185d;
+            border-color: #fbcfe8;
+        }
+
+        .ai-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .ai-modal-overlay.active {
+            display: flex;
+        }
+
+        .ai-modal {
+            background: #ffffff;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: modalSlideUp 0.25s ease-out;
+        }
+
+        @keyframes modalSlideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .ai-modal-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #ffffff;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-modal-header h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-modal-close {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .ai-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .ai-modal-tabs {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0 20px;
+            gap: 10px;
+        }
+
+        .ai-tab-btn {
+            background: none;
+            border: none;
+            padding: 14px 16px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .ai-tab-btn:hover {
+            color: #334155;
+        }
+
+        .ai-tab-btn.active {
+            color: #4f46e5;
+            border-bottom-color: #4f46e5;
+        }
+
+        .ai-modal-body {
+            padding: 25px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .ai-tab-content {
+            display: none;
+        }
+
+        .ai-tab-content.active {
+            display: block;
+        }
+
+        /* Input Controls */
+        .ai-input-group {
+            margin-bottom: 18px;
+        }
+
+        .ai-input-group label {
+            display: block;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .ai-input-field {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .ai-input-field:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+
+        .ai-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #475569;
+        }
+
+        .ai-submit-btn {
+            background: #4f46e5;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .ai-submit-btn:hover {
+            background: #4338ca;
+        }
+
+        .ai-response-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1e293b;
+            white-space: pre-wrap;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .ai-source-tag {
+            display: inline-block;
+            background: #eff6ff;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            margin-top: 6px;
+            text-decoration: none;
+        }
+
+        .ai-audio-player {
+            background: #fdf2f8;
+            border: 1px solid #fbcfe8;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .ai-audio-player audio {
+            width: 100%;
+        }
+
+        .ai-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .content {
+            padding: 40px 50px;
+        }
+
+        .stage-header {
+            margin-top: 30px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stage-header h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 26px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stage-header .base-tag {
+            font-size: 13px;
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            padding: 5px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+        }
+
+        /* Day Card */
+        .day-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .day-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
+        }
+
+        .day-title-bar {
+            background: var(--bg-subtle);
+            padding: 18px 25px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-title-bar h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .day-title-bar .day-num {
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .booking-alert {
+            background: #fffbebfb;
+            border: 1px solid #fef3c7;
+            color: #b45309;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Timeline Slot Grid */
+        .timeline-grid {
+            padding: 20px 25px;
+            display: grid;
+            gap: 15px;
+        }
+
+        .time-slot {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 20px;
+            align-items: start;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #f1f5f9;
+        }
+
+        .time-slot:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .time-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        .time-label.morning { background: #eff6ff; color: var(--morning); }
+        .time-label.lunch { background: #fffbeb; color: var(--lunch); }
+        .time-label.afternoon { background: #ecfdf5; color: var(--afternoon); }
+        .time-label.shopping { background: #f3e8ff; color: var(--shopping); }
+        .time-label.evening { background: #ffe4e6; color: var(--evening); }
+
+        .slot-details h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .slot-details p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+
+        .tag.sight { background: #f0f9ff; color: #0369a1; border-color: #bae6fd; }
+        .tag.food { background: #fff7ed; color: #c2410c; border-color: #ffedd5; }
+        .tag.shop { background: #faf5ff; color: #7e22ce; border-color: #f3e8ff; }
+        .tag.transit { background: #f8fafc; color: #475569; border-color: #cbd5e1; }
+
+        footer {
+            background: var(--bg-subtle);
+            padding: 25px 50px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .content { padding: 20px; }
+            .time-slot { grid-template-columns: 1fr; gap: 8px; }
+            header { padding: 25px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <span class="badge"><i class="fa-solid fa-calendar-days"></i> Master Execution Plan • Oct 1 – Oct 22</span>
+        <h1>22-Day Japan Hour-by-Hour Itinerary</h1>
+        <p>A structured daily schedule balancing landmark sightseeing, street food tastings, snack breaks, shopping districts, and smooth transit transitions across Tokyo, Kyoto, Hiroshima, and Osaka.</p>
+    </header>
+
+    <div class="nav-bar">
+        <button class="nav-btn active" onclick="scrollToStage('stage1', this)">Stage 1: Tokyo East (Oct 1–5)</button>
+        <button class="nav-btn" onclick="scrollToStage('stage2', this)">Stage 2: Kyoto (Oct 6–10)</button>
+        <button class="nav-btn" onclick="scrollToStage('stage3', this)">Stage 3: Hiroshima (Oct 11–12)</button>
+        <button class="nav-btn" onclick="scrollToStage('stage4', this)">Stage 4: Osaka (Oct 12–15)</button>
+        <button class="nav-btn" onclick="scrollToStage('stage5', this)">Stage 5: Tokyo West (Oct 16–22)</button>
+    </div>
+
+    <div class="content">
+
+        <!-- STAGE 1 -->
+        <div id="stage1">
+            <div class="stage-header">
+                <h2><i class="fa-solid fa-torii-gate" style="color:var(--accent)"></i> Stage 1: Eastern Tokyo & Historic Hubs</h2>
+                <span class="base-tag"><i class="fa-solid fa-hotel"></i> Hotel Base: Ueno (Oct 1 – Oct 5)</span>
+            </div>
+
+            <!-- Day 1 -->
+            <div class="day-card" id="day-card-1">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 1 • Day 1</span> Arrival & Ueno District Orientation</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 1', 'Arrival & Ueno District Orientation', 'Landing in Tokyo, Keisei Skyliner to Ueno, Ueno Park walk, Ameyoko street food stalls')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 1', 'Arrival & Ueno District Orientation')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 1', 'Ueno Arrival')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag transit">Transit: Airport Express to Ueno</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-plane-arrival"></i> Morning / Midday</div>
+                        <div class="slot-details">
+                            <h4>Arrival & Hotel Check-in</h4>
+                            <p>Land in Tokyo (Narita/Haneda). Board the Keisei Skyliner or Tokyo Monorail straight to Ueno Station. Drop off bags at your hotel.</p>
+                            <div class="tags-container"><span class="tag transit">Skyliner Train</span><span class="tag sight">Ueno Station Base</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-tree"></i> 14:30 - 17:00</div>
+                        <div class="slot-details">
+                            <h4>Ueno Park & Shinobazu Pond Promenade</h4>
+                            <p>Take a gentle afternoon stroll around Ueno Park to fight jet lag. Visit Bentendo Temple located in the center of Shinobazu Pond.</p>
+                            <div class="tags-container"><span class="tag sight">Ueno Park</span><span class="tag sight">Shinobazu Pond</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-utensils"></i> 17:30 - 20:30</div>
+                        <div class="slot-details">
+                            <h4>Ameyoko Market Street Food & Izakaya Dinner</h4>
+                            <p>Walk under the train tracks at Ameyoko Market. Snack on fresh melon skewers, takoyaki, and yakitori skewers at open-air street stalls.</p>
+                            <div class="tags-container"><span class="tag food">Yakitori & Takoyaki</span><span class="tag shop">Ameyoko Market</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="day-card" id="day-card-2">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 2 • Day 2</span> Asakusa Heritage & Tokyo Skytree Heights</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 2', 'Asakusa Heritage & Skytree', 'Sensō-ji Temple, Nakamise snacks, Tokyo Skytree deck views, Hoppy Street dinner')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 2', 'Asakusa Heritage & Skytree')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 2', 'Asakusa & Skytree')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <div class="booking-alert"><i class="fa-solid fa-ticket"></i> Pre-booked: Skytree Deck</div>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-sun"></i> 08:30 - 11:30</div>
+                        <div class="slot-details">
+                            <h4>Sensō-ji Temple & Historic Asakusa</h4>
+                            <p>Arrive early at Sensō-ji Temple to admire the Kaminarimon Gate lantern. Walk through Nakamise Shopping Street for traditional crafts.</p>
+                            <div class="tags-container"><span class="tag sight">Sensō-ji Temple</span><span class="tag shop">Nakamise-dori</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label lunch"><i class="fa-solid fa-cookie-bite"></i> 11:30 - 13:00</div>
+                        <div class="slot-details">
+                            <h4>Asakusa Snack Break & Tempura Lunch</h4>
+                            <p>Try Ningyo-yaki (red bean cakes) and fried Ningyo-manju along Nakamise, followed by a bowl of traditional tendon (tempura rice bowl) at Daikokuya.</p>
+                            <div class="tags-container"><span class="tag food">Ningyo-yaki Cakes</span><span class="tag food">Asakusa Tempura</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-tower-observation"></i> 13:30 - 17:00</div>
+                        <div class="slot-details">
+                            <h4>Tokyo Skytree & Solamachi Shopping Complex</h4>
+                            <p>Walk or ride 1 stop to Tokyo Skytree. Ascend to the Tembo Deck (350m) for sweeping city views. Spend time shopping at Solamachi (Pokémon Center, Japanese souvenirs).</p>
+                            <div class="tags-container"><span class="tag sight">Tokyo Skytree</span><span class="tag shop">Tokyo Solamachi Mall</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-moon"></i> 18:00 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Riverfront Stroll & Hoppy Street Dinner</h4>
+                            <p>Walk back along Sumida Riverwalk to Asakusa. Have dinner on "Hoppy Street" (famous retro alleyway lined with stewed beef stew & Izakayas).</p>
+                            <div class="tags-container"><span class="tag food">Hoppy Street Izakayas</span><span class="tag sight">Sumida River Views</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="day-card" id="day-card-3">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 3 • Day 3</span> Tokyo Castle (Imperial Palace) & Akihabara Tech</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 3', 'Tokyo Castle & Akihabara', 'Edo Castle stone ruins, Imperial Palace East Gardens, Akihabara Radio Kaikan anime towers')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 3', 'Tokyo Castle & Akihabara')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 3', 'Tokyo Castle & Imperial Palace')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag sight">Feudal & Pop Culture</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-building-columns"></i> 09:00 - 11:30</div>
+                        <div class="slot-details">
+                            <h4>Tokyo Imperial Palace & Edo Castle Ruins</h4>
+                            <p>Tour the grounds of Edo Castle ("Tokyo Castle"), examining the massive stone foundations, defensive moats, and outer Imperial Palace Gardens.</p>
+                            <div class="tags-container"><span class="tag sight">Edo Castle Ruins</span><span class="tag sight">Imperial East Gardens</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label lunch"><i class="fa-solid fa-utensils"></i> 11:30 - 13:00</div>
+                        <div class="slot-details">
+                            <h4>Tokyo Station Underground Food Hall Lunch</h4>
+                            <p>Walk to Tokyo Station's historic red-brick building for lunch on Ramen Street or Character Street.</p>
+                            <div class="tags-container"><span class="tag food">Ramen Street Lunch</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-gamepad"></i> 13:30 - 17:30</div>
+                        <div class="slot-details">
+                            <h4>Akihabara Electric Town</h4>
+                            <p>Explore multi-story gaming, electronics, and anime towers including Radio Kaikan, Yodobashi Akiba, and GiGO arcades.</p>
+                            <div class="tags-container"><span class="tag sight">Akihabara Electric Town</span><span class="tag shop">Radio Kaikan</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-bowl-food"></i> 18:00 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Kanda / Akihabara Izakaya Dinner</h4>
+                            <p>Enjoy local izakaya dining or tonkotsu ramen around Akihabara and Kanda district.</p>
+                            <div class="tags-container"><span class="tag food">Akihabara Dining</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="day-card" id="day-card-4">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 4 • Day 4</span> Tsukiji Outer Market & teamLab Planets TOKYO</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 4', 'Tsukiji & teamLab Planets', 'Tsukiji fresh seafood crawl, tamagoyaki omelets, teamLab digital art water exhibits, Odaiba bay views')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 4', 'Tsukiji & teamLab Planets')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 4', 'teamLab Planets & Tsukiji')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <div class="booking-alert"><i class="fa-solid fa-ticket"></i> Pre-booked: teamLab Planets</div>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-fish"></i> 08:30 - 11:30</div>
+                        <div class="slot-details">
+                            <h4>Tsukiji Outer Market Breakfast & Seafood Crawl</h4>
+                            <p>Taste fresh sushi bowls, tamagoyaki (rolled omelets), grilled oysters, wagyu skewers, and fresh fruit at Tsukiji market stalls.</p>
+                            <div class="tags-container"><span class="tag food">Tsukiji Seafood Crawl</span><span class="tag food">Tamagoyaki Omelets</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-palette"></i> 12:00 - 14:00</div>
+                        <div class="slot-details">
+                            <h4>teamLab Planets TOKYO Digital Art Experience</h4>
+                            <p>Enter teamLab Planets in Toyosu to wade through knee-deep water art installations, mirrored infinity rooms, and floating flower gardens.</p>
+                            <div class="tags-container"><span class="tag sight">teamLab Planets TOKYO</span><span class="tag sight">Digital Art Museum</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label shopping"><i class="fa-solid fa-bridge-water"></i> 14:30 - 17:30</div>
+                        <div class="slot-details">
+                            <h4>Odaiba Waterfront Promenade & Rainbow Bridge</h4>
+                            <p>Stroll along Odaiba bayfront park to view the Statue of Liberty replica, Rainbow Bridge skyline, and Gundam Statue.</p>
+                            <div class="tags-container"><span class="tag sight">Odaiba Bay Area</span><span class="tag sight">Rainbow Bridge View</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-utensils"></i> 18:00 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Waterfront Dinner & Return to Ueno</h4>
+                            <p>Enjoy dinner overlooking Tokyo Bay in Odaiba before taking the Yurikamome line train back to Ueno base.</p>
+                            <div class="tags-container"><span class="tag food">Odaiba Bay Dining</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 5 -->
+            <div class="day-card" id="day-card-5">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 5 • Day 5</span> Kappabashi Kitchenware Street & Ginza Shopping</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 5', 'Kappabashi & Ginza', 'Kappabashi artisan Japanese knives, wax sample replicas, Ginza luxury stores, Depachika gourmet food halls')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 5', 'Kappabashi & Ginza')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 5', 'Kappabashi & Ginza')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag shop">Artisan Crafts & Ginza</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-utensils"></i> 09:00 - 12:00</div>
+                        <div class="slot-details">
+                            <h4>Kappabashi Dougu Street (Kitchenware Town)</h4>
+                            <p>Explore famous Kappabashi street near Ueno/Asakusa. Browse artisan handcrafted Japanese chef knives, ceramic dishware, lacquered chopsticks, and realistic wax food replicas (sampuru).</p>
+                            <div class="tags-container"><span class="tag shop">Kappabashi Kitchenware</span><span class="tag sight">Artisan Japanese Knives</span><span class="tag shop">Fake Food Sampuru</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-bag-shopping"></i> 12:30 - 16:30</div>
+                        <div class="slot-details">
+                            <h4>Ginza Luxury District & Depachika Gourmet Halls</h4>
+                            <p>Take the metro to Ginza. Explore flagship architecture, visit the Ginza Six rooftop garden, and sample gourmet lunches and Japanese sweets in Mitsukoshi's underground Depachika.</p>
+                            <div class="tags-container"><span class="tag shop">Ginza District</span><span class="tag food">Depachika Food Halls</span><span class="tag sight">Ginza Six Rooftop</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-suitcase"></i> 17:00 - 20:30</div>
+                        <div class="slot-details">
+                            <h4>Ginza Dinner & Return to Ueno to Pack</h4>
+                            <p>Dine in Ginza or under the Yurakucho train track arches. Head back to Ueno hotel base to pack your luggage for tomorrow morning's Shinkansen bullet train to Kyoto.</p>
+                            <div class="tags-container"><span class="tag food">Ginza Dining</span><span class="tag transit">Pack Bags for Travel</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STAGE 2 -->
+        <div id="stage2">
+            <div class="stage-header">
+                <h2><i class="fa-solid fa-vihara" style="color:var(--accent)"></i> Stage 2: Kyoto Cultural Heartland</h2>
+                <span class="base-tag"><i class="fa-solid fa-hotel"></i> Hotel Base: Central Kyoto (Oct 6 – Oct 10)</span>
+            </div>
+
+            <!-- Day 6 -->
+            <div class="day-card" id="day-card-6">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 6 • Day 6</span> Bullet Train to Kyoto & Fushimi Inari Torii Gates</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 6', 'Kyoto Arrival & Fushimi Inari', 'Tokaido Shinkansen bullet train, Ekiben station bento, Fushimi Inari vermilion torii gate trail, Pontocho Alley dinner')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 6', 'Kyoto Arrival & Fushimi Inari')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 6', 'Fushimi Inari')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag transit">Shinkansen: ~2h 15m</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-train-subway"></i> 08:30 - 11:30</div>
+                        <div class="slot-details">
+                            <h4>Shinkansen Journey & Kyoto Hotel Check-in</h4>
+                            <p>Board Tokaido Shinkansen from Tokyo Station to Kyoto. Enjoy an Ekiben (station bento box) on board. Arrive at Kyoto Station and check into hotel.</p>
+                            <div class="tags-container"><span class="tag transit">Tokaido Shinkansen</span><span class="tag food">Ekiben Bento</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-torii-gate"></i> 13:00 - 16:30</div>
+                        <div class="slot-details">
+                            <h4>Fushimi Inari Taisha Torii Gate Mountain Trail</h4>
+                            <p>Take JR Nara line 5 mins to Fushimi Inari. Hike through thousands of vermilion torii gates stretching up sacred Mount Inari.</p>
+                            <div class="tags-container"><span class="tag sight">Fushimi Inari Taisha</span><span class="tag sight">Torii Gate Trail</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label shopping"><i class="fa-solid fa-mug-hot"></i> 16:30 - 17:30</div>
+                        <div class="slot-details">
+                            <h4>Shrine Base Tea & Kitsune Senbei Snack</h4>
+                            <p>Sample fox-shaped Kitsune cookies and hot roasted hojicha tea at traditional tearooms near the shrine exit.</p>
+                            <div class="tags-container"><span class="tag food">Kitsune Senbei</span><span class="tag food">Hojicha Tea</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-water"></i> 18:30 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Pontocho Alley & Kamogawa River Stroll</h4>
+                            <p>Walk down atmospheric Pontocho Alley, a lantern-lit narrow pedestrian lane alongside the Kamogawa River. Dine on Kyoto-style obanzai or yakitori.</p>
+                            <div class="tags-container"><span class="tag sight">Pontocho Alley</span><span class="tag food">Obanzai Kyoto Dining</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 7 -->
+            <div class="day-card" id="day-card-7">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 7 • Day 7</span> Kiyomizu-dera, Preserved Streets & Gion Geisha District</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 7', 'Kiyomizu & Gion', 'Kiyomizu-dera wooden stage, Otowa waterfall, Ninenzaka Sannenzaka stone lanes, matcha parfaits, Gion Hanami-koji street')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 7', 'Kiyomizu & Gion')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 7', 'Kiyomizu & Gion')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag sight">Historic Eastern Kyoto</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-place-of-worship"></i> 08:00 - 10:30</div>
+                        <div class="slot-details">
+                            <h4>Kiyomizu-dera Early Visit</h4>
+                            <p>Arrive early at Kiyomizu-dera to view the wooden stage overlooking Kyoto without crowd congestion. Drink from Otowa Waterfall spring waters.</p>
+                            <div class="tags-container"><span class="tag sight">Kiyomizu-dera</span><span class="tag sight">Otowa Waterfall</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-road"></i> 10:30 - 13:30</div>
+                        <div class="slot-details">
+                            <h4>Ninenzaka & Sannenzaka Stone Lanes Walk</h4>
+                            <p>Walk down preserved stone-paved lanes. Stop at traditional teahouses for matcha parfaits and Dango rice cakes on wooden sticks.</p>
+                            <div class="tags-container"><span class="tag sight">Ninenzaka & Sannenzaka</span><span class="tag food">Matcha Parfaits & Dango</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label shopping"><i class="fa-solid fa-shop"></i> 14:00 - 17:00</div>
+                        <div class="slot-details">
+                            <h4>Kodai-ji Temple & Yasaka Shrine</h4>
+                            <p>Visit Zen garden at Kodai-ji Temple and stroll through Maruyama Park to lantern-lit Yasaka Shrine.</p>
+                            <div class="tags-container"><span class="tag sight">Kodai-ji Zen Garden</span><span class="tag sight">Yasaka Shrine</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-fan"></i> 17:30 - 20:30</div>
+                        <div class="slot-details">
+                            <h4>Gion Historic Evening Stroll</h4>
+                            <p>Walk down Hanami-koji Street in Gion to view wooden machiya teahouses and potentially spot Geiko/Maiko heading to appointments.</p>
+                            <div class="tags-container"><span class="tag sight">Gion District</span><span class="tag sight">Hanami-koji Street</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 8 -->
+            <div class="day-card" id="day-card-8">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 8 • Day 8</span> Arashiyama Bamboo Grove & Kinkaku-ji Golden Pavilion</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 8', 'Arashiyama & Kinkaku-ji', 'Arashiyama Bamboo Forest, Tenryu-ji Zen garden, Togetsukyo Bridge, Yudofu lunch, Kinkaku-ji Golden Pavilion, Nishiki Market street food')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 8', 'Arashiyama & Kinkaku-ji')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 8', 'Arashiyama & Kinkaku-ji')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag sight">Western & Northern Kyoto</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-tree"></i> 08:00 - 11:30</div>
+                        <div class="slot-details">
+                            <h4>Arashiyama Bamboo Forest & Tenryu-ji Garden</h4>
+                            <p>Take Randen or JR train to Arashiyama. Walk through towering green Bamboo Grove before standard crowds arrive. Tour UNESCO-listed Tenryu-ji Zen garden.</p>
+                            <div class="tags-container"><span class="tag sight">Arashiyama Bamboo Grove</span><span class="tag sight">Tenryu-ji Temple</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label lunch"><i class="fa-solid fa-bowl-food"></i> 11:30 - 13:00</div>
+                        <div class="slot-details">
+                            <h4>Togetsukyo Bridge & Yudofu Tofu / Soba Lunch</h4>
+                            <p>Walk along Oi River near Togetsukyo Bridge. Dine on fresh Arashiyama yudofu (hot tofu pot) or handmade buckwheat soba noodles.</p>
+                            <div class="tags-container"><span class="tag food">Arashiyama Yudofu Lunch</span><span class="tag sight">Togetsukyo Bridge</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-gem"></i> 13:30 - 16:00</div>
+                        <div class="slot-details">
+                            <h4>Kinkaku-ji (The Golden Pavilion)</h4>
+                            <p>Take bus/taxi north to Kinkaku-ji. Marvel at the top two floors clad in gold leaf reflecting across Kyoko-chi (Mirror Pond).</p>
+                            <div class="tags-container"><span class="tag sight">Kinkaku-ji Pavilion</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-store"></i> 17:00 - 20:00</div>
+                        <div class="slot-details">
+                            <h4>Nishiki Market Evening Food Crawl</h4>
+                            <p>Head to Nishiki Market ("Kyoto's Kitchen"). Taste seafood skewers, fried fish cakes, tamagoyaki (rolled omelet), and pickles.</p>
+                            <div class="tags-container"><span class="tag food">Nishiki Market Street Food</span><span class="tag shop">Teramachi Arcade</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 9 -->
+            <div class="day-card" id="day-card-9">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 9 • Day 9</span> Day Trip to Ancient Nara & Sacred Deer Park</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 9', 'Nara Day Trip', 'Nara Deer Park shika senbei, Todai-ji Great Bronze Buddha, Nakatanidou pounded mochi show, Kasuga Taisha lanterns')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 9', 'Nara Day Trip')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 9', 'Nara Deer Park')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag transit">Day Trip: 45-min Train from Kyoto</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-paw"></i> 08:30 - 12:00</div>
+                        <div class="slot-details">
+                            <h4>Nara Park & Todai-ji Great Bronze Buddha</h4>
+                            <p>Board Kintetsu or JR line to Nara. Feed shika senbei (deer crackers) to free-roaming sacred deer in Nara Park. Marvel at Daibutsuden (Great Buddha Hall) in Todai-ji.</p>
+                            <div class="tags-container"><span class="tag sight">Nara Deer Park</span><span class="tag sight">Todai-ji Great Buddha</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label lunch"><i class="fa-solid fa-utensils"></i> 12:00 - 13:30</div>
+                        <div class="slot-details">
+                            <h4>Naramachi Merchant Quarter Lunch & Mochi Show</h4>
+                            <p>Walk into Naramachi historic merchant district. Stop at Nakatanidou to watch famous high-speed pounded green Yomogi Mochi making and sample fresh warm mochi.</p>
+                            <div class="tags-container"><span class="tag food">Nakatanidou Pounded Mochi</span><span class="tag sight">Naramachi Quarter</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-synagogue"></i> 14:00 - 16:30</div>
+                        <div class="slot-details">
+                            <h4>Kasuga Taisha Shrine Lantern Paths</h4>
+                            <p>Stroll forested stone lantern paths leading to Kasuga Taisha Shinto Shrine, framed by bronze lanterns hanging from wooden corridors.</p>
+                            <div class="tags-container"><span class="tag sight">Kasuga Taisha Shrine</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-train"></i> 17:30 - 20:30</div>
+                        <div class="slot-details">
+                            <h4>Return to Kyoto & Kyoto Station Porta Dinner</h4>
+                            <p>Return to Kyoto. Explore underground Porta shopping mall at Kyoto Station for Tonkatsu or Ramen Street on the 10th floor.</p>
+                            <div class="tags-container"><span class="tag food">Kyoto Station Ramen Street</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 10 -->
+            <div class="day-card" id="day-card-10">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 10 • Day 10</span> Shogun Castle & Zen Rock Gardens</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 10', 'Nijo Castle & Zen Gardens', 'Nijo Castle nightingale alarm floors, Ninomaru Palace, Ryoan-ji 15-stone Zen rock garden, farewell Kyoto Kaiseki dinner')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 10', 'Nijo Castle & Zen Gardens')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 10', 'Nijo Castle & Zen Gardens')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag sight">Imperial Heritage</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-chess-rook"></i> 09:00 - 11:30</div>
+                        <div class="slot-details">
+                            <h4>Nijo Castle & Nightingale Security Floors</h4>
+                            <p>Tour Nijo Castle, former Kyoto residence of the Tokugawa Shoguns. Walk across squeaking "nightingale floors" designed to detect intruders.</p>
+                            <div class="tags-container"><span class="tag sight">Nijo Castle</span><span class="tag sight">Ninomaru Palace</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-dharmachakra"></i> 12:30 - 15:30</div>
+                        <div class="slot-details">
+                            <h4>Ryoan-ji Zen Dry Rock Garden</h4>
+                            <p>Visit Ryoan-ji, world-famous Zen dry landscape garden featuring 15 stones arranged in white gravel where not all 15 can be seen at once.</p>
+                            <div class="tags-container"><span class="tag sight">Ryoan-ji Zen Garden</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label shopping"><i class="fa-solid fa-shirt"></i> 16:00 - 18:00</div>
+                        <div class="slot-details">
+                            <h4>Kawaramachi & Shijo-dori Shopping</h4>
+                            <p>Browse modern shops, craft boutiques, and souvenir stores along Shijo-dori and Kawaramachi shopping arcades.</p>
+                            <div class="tags-container"><span class="tag shop">Kawaramachi Arcade</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-utensils"></i> 18:30 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Kaiseki Multi-course Farewell Kyoto Dinner</h4>
+                            <p>Enjoy traditional Kyoto Kaiseki multi-course dinner featuring seasonal vegetables, sashimi, and Kyoto specialties. Forward main bags to Osaka hotel base.</p>
+                            <div class="tags-container"><span class="tag food">Kyoto Kaiseki Dinner</span><span class="tag transit">Forward Luggage to Osaka</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STAGE 3 -->
+        <div id="stage3">
+            <div class="stage-header">
+                <h2><i class="fa-solid fa-dove" style="color:var(--accent)"></i> Stage 3: Hiroshima Peace & Miyajima Sacred Island</h2>
+                <span class="base-tag"><i class="fa-solid fa-hotel"></i> Hotel Base: Hiroshima (1 Night: Oct 11)</span>
+            </div>
+
+            <!-- Day 11 -->
+            <div class="day-card" id="day-card-11">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 11 • Day 11</span> Shinkansen from Kyoto to Hiroshima & Peace Memorial</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 11', 'Hiroshima Peace Memorial', 'Sanyo Shinkansen, Atomic Bomb Dome, Children Peace Monument, Peace Museum, Okonomimura dinner')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 11', 'Hiroshima Peace Memorial')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 11', 'Hiroshima Peace Museum')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag transit">Shinkansen: ~1h 45m</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-train"></i> 08:00 - 10:30</div>
+                        <div class="slot-details">
+                            <h4>Shinkansen from Kyoto & Hiroshima Check-in</h4>
+                            <p>Board Sanyo Shinkansen from Kyoto Station to Hiroshima Station (~1h 45m). Drop overnight bags at your Hiroshima hotel.</p>
+                            <div class="tags-container"><span class="tag transit">Sanyo Shinkansen</span><span class="tag sight">Hiroshima Hotel Check-in</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-monument"></i> 10:30 - 17:00</div>
+                        <div class="slot-details">
+                            <h4>Peace Memorial Park, Atomic Bomb Dome & Museum</h4>
+                            <p>Pay respects at the Atomic Bomb Dome ruins, Children's Peace Monument, and Flame of Peace. Tour the artifacts inside the Hiroshima Peace Memorial Museum.</p>
+                            <div class="tags-container"><span class="tag sight">Atomic Bomb Dome</span><span class="tag sight">Peace Museum</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-fire"></i> 18:00 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Okonomimura Hiroshima Okonomiyaki Feast</h4>
+                            <p>Head to Okonomimura building (3 floors filled with 25+ Okonomiyaki stalls) for layered cabbage, noodle, and pork teppan pancakes. Sleep in Hiroshima.</p>
+                            <div class="tags-container"><span class="tag food">Okonomimura Stalls</span><span class="tag food">Hiroshima Okonomiyaki</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 12 -->
+            <div class="day-card" id="day-card-12">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 12 • Day 12</span> Miyajima Sacred Island & Evening Bullet Train to Osaka</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 12', 'Miyajima Island & Osaka Transit', 'Itsukushima floating torii gate, Mt Misen ropeway, Miyajima oysters, evening Shinkansen to Osaka, Dotonbori night')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 12', 'Miyajima Island & Osaka Transit')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 12', 'Miyajima & Shinkansen to Osaka')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag transit">Base Shift to Osaka</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-ship"></i> 08:00 - 12:00</div>
+                        <div class="slot-details">
+                            <h4>Ferry to Miyajima & Floating Torii Gate</h4>
+                            <p>Take JR line and short 10-minute ferry to Miyajima Island. Marvel at Itsukushima Shrine's red torii gate floating in tidal waters.</p>
+                            <div class="tags-container"><span class="tag transit">Miyajima Ferry</span><span class="tag sight">Floating Torii Gate</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label lunch"><i class="fa-solid fa-shrimp"></i> 12:00 - 15:30</div>
+                        <div class="slot-details">
+                            <h4>Grilled Oysters, Momiji Manju & Mt. Misen Ropeway</h4>
+                            <p>Snack on fresh butter-grilled oysters and Momiji Manju cakes along Omotesando street. Ride Miyajima Ropeway up Mt. Misen for Seto Inland Sea vistas.</p>
+                            <div class="tags-container"><span class="tag food">Miyajima Oysters</span><span class="tag sight">Mt. Misen Ropeway</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-train"></i> 16:30 - 18:30</div>
+                        <div class="slot-details">
+                            <h4>Return to Hiroshima & Shinkansen to Osaka</h4>
+                            <p>Ferry back to mainland, collect overnight bags from Hiroshima hotel, and board Sanyo Shinkansen to Shin-Osaka Station (~1h 25m).</p>
+                            <div class="tags-container"><span class="tag transit">Shinkansen to Osaka</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-lightbulb"></i> 19:00 - 21:30</div>
+                        <div class="slot-details">
+                            <h4>Check-in Osaka Hotel & Dotonbori Neon Street Food</h4>
+                            <p>Check into central Osaka hotel (where main luggage was forwarded). Walk down Dotonbori canal for takoyaki & kushikatsu snacks.</p>
+                            <div class="tags-container"><span class="tag sight">Dotonbori Neon</span><span class="tag food">Takoyaki & Kushikatsu</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STAGE 4 -->
+        <div id="stage4">
+            <div class="stage-header">
+                <h2><i class="fa-solid fa-bolt" style="color:var(--accent)"></i> Stage 4: Osaka Food & Neon Energy</h2>
+                <span class="base-tag"><i class="fa-solid fa-hotel"></i> Hotel Base: Central Osaka (Oct 12 – Oct 15)</span>
+            </div>
+
+            <!-- Day 13 -->
+            <div class="day-card" id="day-card-13">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 13 • Day 13</span> Osaka Castle Fortress & Umeda Sky Heights</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 13', 'Osaka Castle & Umeda Heights', 'Osaka Castle keep, Nishinomaru moat gardens, Umeda Sky Floating Garden views')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 13', 'Osaka Castle & Umeda Heights')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 13', 'Osaka Castle')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag sight">History & Skyline</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-chess-rook"></i> 09:00 - 12:00</div>
+                        <div class="slot-details">
+                            <h4>Osaka Castle Keep & Moat Parklands</h4>
+                            <p>Tour Osaka Castle main keep museum detailing Toyotomi Hideyoshi's unification of Japan. Walk through Nishinomaru garden grounds.</p>
+                            <div class="tags-container"><span class="tag sight">Osaka Castle Keep</span><span class="tag sight">Nishinomaru Garden</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label lunch"><i class="fa-solid fa-utensils"></i> 12:30 - 14:30</div>
+                        <div class="slot-details">
+                            <h4>Umeda District Lunch & Shopping</h4>
+                            <p>Head to Umeda district for lunch at Grand Front Osaka or underground station eateries.</p>
+                            <div class="tags-container"><span class="tag food">Umeda Dining</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-building-user"></i> 15:00 - 17:30</div>
+                        <div class="slot-details">
+                            <h4>Umeda Sky Building Floating Garden Observatory</h4>
+                            <p>Take open-air escalators up Umeda Sky Building Floating Garden for 360-degree views across Osaka's cityscape.</p>
+                            <div class="tags-container"><span class="tag sight">Umeda Sky Building</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-bag-shopping"></i> 18:00 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Shinsaibashi Arcade & Namba Night Stroll</h4>
+                            <p>Stroll Shinsaibashi-suji covered shopping arcade and enjoy local izakaya dining around Namba.</p>
+                            <div class="tags-container"><span class="tag shop">Shinsaibashi Arcade</span><span class="tag food">Namba Dining</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 14 -->
+            <div class="day-card" id="day-card-14">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 14 • Day 14</span> Day Trip to Himeji Castle ("White Heron")</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 14', 'Himeji Castle Day Trip', 'Original wooden keep at Himeji Castle, Koko-en samurai gardens, retro Shinsekai district')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 14', 'Himeji Castle Day Trip')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 14', 'Himeji Castle')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag transit">Day Trip: 30-min Shinkansen</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-fort-awesome"></i> 09:00 - 13:00</div>
+                        <div class="slot-details">
+                            <h4>Himeji Castle Original Wooden Keep</h4>
+                            <p>Take 30-min Shinkansen to Himeji. Tour Japan's largest original feudal castle keep and defensive walls (UNESCO World Heritage Site).</p>
+                            <div class="tags-container"><span class="tag sight">Himeji White Heron Castle</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label lunch"><i class="fa-solid fa-leaf"></i> 13:00 - 15:30</div>
+                        <div class="slot-details">
+                            <h4>Koko-en Japanese Gardens & Teahouse Lunch</h4>
+                            <p>Stroll nine walled samurai-style gardens at Koko-en. Enjoy green tea and seasonal lunch overlooking koi ponds.</p>
+                            <div class="tags-container"><span class="tag sight">Koko-en Garden</span><span class="tag food">Teahouse Lunch</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-tower-cell"></i> 16:30 - 20:30</div>
+                        <div class="slot-details">
+                            <h4>Return to Osaka & Retro Shinsekai Night Crawl</h4>
+                            <p>Return to Osaka. Explore retro Shinsekai quarter under Tsutenkaku Tower and dine on kushikatsu skewers.</p>
+                            <div class="tags-container"><span class="tag sight">Shinsekai District</span><span class="tag food">Kushikatsu Skewers</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 15 -->
+            <div class="day-card" id="day-card-15">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 15 • Day 15</span> Universal Studios Japan OR Osaka Bay Aquarium</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 15', 'USJ or Kaiyukan Aquarium', 'Super Nintendo World Mario Kart, Harry Potter land, Kaiyukan whale sharks, Amerikamura vintage')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 15', 'USJ or Kaiyukan Aquarium')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 15', 'USJ & Osaka Bay')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <div class="booking-alert"><i class="fa-solid fa-ticket"></i> Pre-booked: USJ / Kaiyukan</div>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-gamepad"></i> 09:00 - 13:00</div>
+                        <div class="slot-details">
+                            <h4>Super Nintendo World (USJ) OR Kaiyukan Aquarium</h4>
+                            <p><strong>Option A:</strong> Full day at Universal Studios Japan entering Super Nintendo World (Mario Kart Bowser's Challenge).<br><strong>Option B:</strong> Visit Osaka Aquarium Kaiyukan to view whale sharks in the giant Pacific tank.</p>
+                            <div class="tags-container"><span class="tag sight">Super Nintendo World</span><span class="tag sight">Kaiyukan Aquarium</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-glasses"></i> 13:30 - 17:00</div>
+                        <div class="slot-details">
+                            <h4>Theme Park Attractions OR Amerikamura Vintage Shops</h4>
+                            <p>Continue USJ attractions (Harry Potter land) or explore Amerikamura vintage clothing shops and cafes.</p>
+                            <div class="tags-container"><span class="tag sight">Harry Potter World</span><span class="tag shop">Amerikamura Vintage</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-fire-burner"></i> 18:00 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Farewell Osaka Yakiniku Dinner & Pack</h4>
+                            <p>Enjoy grilled wagyu Yakiniku dinner in Namba and pack bags for tomorrow's bullet train back to Tokyo base 2.</p>
+                            <div class="tags-container"><span class="tag food">Osaka Yakiniku Dinner</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STAGE 5 -->
+        <div id="stage5">
+            <div class="stage-header">
+                <h2><i class="fa-solid fa-city" style="color:var(--accent)"></i> Stage 5: Western Tokyo Modern Metropolis</h2>
+                <span class="base-tag"><i class="fa-solid fa-hotel"></i> Hotel Base: Shinjuku (Oct 16 – Oct 22)</span>
+            </div>
+
+            <!-- Day 16 -->
+            <div class="day-card" id="day-card-16">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 16 • Day 16</span> Shinkansen to Tokyo & Shinjuku Golden Gai</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 16', 'Shinjuku & Golden Gai', 'Shinkansen return to Tokyo, Tokyo Metro Govt Building views, Kabukicho 3D cat, Golden Gai micro-bars')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 16', 'Shinjuku & Golden Gai')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 16', 'Shinjuku & Golden Gai')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag transit">Shinkansen: ~2h 30m</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-train"></i> 09:00 - 12:00</div>
+                        <div class="slot-details">
+                            <h4>Shinkansen to Tokyo & Shinjuku Hotel Check-in</h4>
+                            <p>Board Tokaido Shinkansen back to Tokyo. Transfer to Shinjuku Station and check into your Shinjuku hotel.</p>
+                            <div class="tags-container"><span class="tag transit">Shinkansen Return</span><span class="tag sight">Shinjuku Base</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-building"></i> 13:00 - 16:00</div>
+                        <div class="slot-details">
+                            <h4>Tokyo Metropolitan Government Building 45th Floor View</h4>
+                            <p>Take the high-speed elevator to the 45th floor observation deck for free panoramic views across Tokyo's metropolis.</p>
+                            <div class="tags-container"><span class="tag sight">Metro Govt Building View</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-martini-glass"></i> 17:00 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Kabukicho 3D Cat & Shinjuku Golden Gai Micro-bars</h4>
+                            <p>See the 3D Giant Cat screen near Shinjuku Station East. Grab yakitori and drinks inside historic micro-bars in Shinjuku Golden Gai.</p>
+                            <div class="tags-container"><span class="tag sight">Kabukicho 3D Cat</span><span class="tag food">Golden Gai Micro-bars</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 17 -->
+            <div class="day-card" id="day-card-17">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 17 • Day 17</span> Meiji Jingu, Harajuku, Shibuya Crossing & Shibuya Sky</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 17', 'Harajuku, Shibuya & Sunset Sky', 'Meiji Jingu forest, Takeshita Street crepes, Omotesando lunch, Shibuya Scramble Crossing, Hachiko statue, Shibuya Sky rooftop sunset')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 17', 'Harajuku, Shibuya & Sunset Sky')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 17', 'Shibuya & Harajuku')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <div class="booking-alert"><i class="fa-solid fa-ticket"></i> Pre-booked: Shibuya Sky Sunset</div>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-torii-gate"></i> 09:00 - 11:30</div>
+                        <div class="slot-details">
+                            <h4>Meiji Jingu Shrine & Takeshita Street</h4>
+                            <p>Walk under giant wooden torii gates into tranquil Meiji Jingu forest. Browse Takeshita Street in Harajuku for crepes and youth fashion.</p>
+                            <div class="tags-container"><span class="tag sight">Meiji Jingu Shrine</span><span class="tag food">Harajuku Crepes</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label lunch"><i class="fa-solid fa-shoe-prints"></i> 11:30 - 13:30</div>
+                        <div class="slot-details">
+                            <h4>Omotesando Avenue Lunch & Stroll</h4>
+                            <p>Walk down tree-lined Omotesando avenue for architecture browsing and lunch at Omotesando Hills.</p>
+                            <div class="tags-container"><span class="tag shop">Omotesando Avenue</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-users-line"></i> 14:00 - 16:30</div>
+                        <div class="slot-details">
+                            <h4>Shibuya Scramble Crossing & Hachiko Statue</h4>
+                            <p>Walk across world-famous Shibuya Scramble Crossing alongside thousands of pedestrians. Visit Hachiko bronze dog statue.</p>
+                            <div class="tags-container"><span class="tag sight">Shibuya Crossing</span><span class="tag sight">Hachiko Statue</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-sun"></i> 17:00 - 20:30</div>
+                        <div class="slot-details">
+                            <h4>Shibuya Sky Rooftop Sunset & Shibuya Nightlife</h4>
+                            <p>Ascend to open-air rooftop observation deck at Shibuya Sky for sunset view across Tokyo skyline. Dine in Shibuya Parco or Miyashita Park.</p>
+                            <div class="tags-container"><span class="tag sight">Shibuya Sky Rooftop</span><span class="tag food">Shibuya Dining</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 18 -->
+            <div class="day-card" id="day-card-18">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 18 • Day 18</span> Shinjuku Gyoen National Garden & City Exploration</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 18', 'Shinjuku Gyoen & City Exploration', 'Shinjuku Gyoen landscape garden, French formal gardens, Roppongi Hills art museums, Omoide Yokocho izakaya alleys')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 18', 'Shinjuku Gyoen & City Exploration')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 18', 'Shinjuku Gyoen')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <div class="booking-alert"><i class="fa-solid fa-ticket"></i> Pre-booked: Shinjuku Gyoen QR Ticket</div>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-tree"></i> 09:00 - 11:30</div>
+                        <div class="slot-details">
+                            <h4>Shinjuku Gyoen National Garden</h4>
+                            <p>Stroll through 144 acres of Japanese landscape gardens, English lawns, French formal gardens, and large greenhouse exhibits.</p>
+                            <div class="tags-container"><span class="tag sight">Shinjuku Gyoen</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-bag-shopping"></i> 12:00 - 17:00</div>
+                        <div class="slot-details">
+                            <h4>Ginza Luxury District OR Roppongi Hills</h4>
+                            <p>Explore luxury boutiques and department store depachika food halls in Ginza or art galleries at Roppongi Hills.</p>
+                            <div class="tags-container"><span class="tag shop">Ginza Shopping</span><span class="tag sight">Roppongi Hills</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-utensils"></i> 18:00 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Relaxed Shinjuku Izakaya Dinner</h4>
+                            <p>Enjoy a relaxed evening meal in West Shinjuku or Omoide Yokocho ("Memory Lane").</p>
+                            <div class="tags-container"><span class="tag food">Omoide Yokocho Alleys</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 19 -->
+            <div class="day-card" id="day-card-19">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 19 • Day 19</span> Day Trip to Hakone & Mount Fuji Vistas</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 19', 'Hakone & Mt Fuji Trip', 'Odakyu Romancecar express, Hakone Tozan railway, Owakudani volcanic valley, Kuro-tamago black eggs, Lake Ashi pirate ship cruise, Mt Fuji views')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 19', 'Hakone & Mt Fuji Trip')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 19', 'Hakone & Mt Fuji')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag transit">Day Trip: Romancecar Express</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-train"></i> 08:00 - 11:30</div>
+                        <div class="slot-details">
+                            <h4>Odakyu Romancecar to Hakone & Cable Car</h4>
+                            <p>Board Romancecar from Shinjuku Station to Hakone-Yumoto. Take Hakone Tozan Railway and cable car up the mountain.</p>
+                            <div class="tags-container"><span class="tag transit">Romancecar Train</span><span class="tag sight">Hakone Cable Car</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label lunch"><i class="fa-solid fa-volcano"></i> 11:30 - 14:00</div>
+                        <div class="slot-details">
+                            <h4>Owakudani Volcanic Valley & Black Eggs</h4>
+                            <p>Ride Hakone Ropeway over steaming Owakudani volcanic valley. Sample famous Kuro-tamago (black eggs boiled in volcanic waters).</p>
+                            <div class="tags-container"><span class="tag sight">Owakudani Volcanic Valley</span><span class="tag food">Kuro-tamago Black Eggs</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-ship"></i> 14:00 - 17:00</div>
+                        <div class="slot-details">
+                            <h4>Lake Ashi Pirate Ship Cruise & Mt. Fuji View</h4>
+                            <p>Cruise across Lake Ashi on a pirate ship with views of Mount Fuji and Hakone Shrine's red torii gate in the water.</p>
+                            <div class="tags-container"><span class="tag sight">Lake Ashi Cruise</span><span class="tag sight">Mount Fuji View</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-train-subway"></i> 18:00 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Return to Shinjuku & Dinner</h4>
+                            <p>Take Romancecar back to Shinjuku Station for late dinner.</p>
+                            <div class="tags-container"><span class="tag transit">Return to Shinjuku</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 20 -->
+            <div class="day-card" id="day-card-20">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 20 • Day 20</span> Flexible Buffer / Optional Sightseeing Excursions</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 20', 'Flexible Buffer Day', 'Ghibli Museum Mitaka, Harry Potter Studio Tour, Shimokitazawa thrift vintage, Nakano Broadway anime collectibles')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 20', 'Flexible Buffer Day')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 20', 'Tokyo Buffer Day')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag sight">Flex Day / Optional Pre-booked Spots</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-wand-magic"></i> 09:30 - 13:00</div>
+                        <div class="slot-details">
+                            <h4>Ghibli Museum OR Harry Potter Studio Tour (Optional)</h4>
+                            <p>Optionally visit Studio Ghibli Museum in Mitaka or Warner Bros. Studio Tour Tokyo - Making of Harry Potter *(Must pre-book far in advance)*.</p>
+                            <div class="tags-container"><span class="tag sight">Ghibli Museum</span><span class="tag sight">Harry Potter Studio Tour</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-store"></i> 13:30 - 17:30</div>
+                        <div class="slot-details">
+                            <h4>Secondary Neighborhood Exploration</h4>
+                            <p>Visit Shimokitazawa (vintage thrift shopping), Kichijoji (Inokashira Park), or Nakano Broadway (retro collectibles).</p>
+                            <div class="tags-container"><span class="tag shop">Shimokitazawa Vintage</span><span class="tag shop">Nakano Broadway</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-utensils"></i> 18:00 - 21:00</div>
+                        <div class="slot-details">
+                            <h4>Shinjuku Dining & Cocktail Bar Night</h4>
+                            <p>Dine at a local craft beer hall or cocktail bar in West Shinjuku.</p>
+                            <div class="tags-container"><span class="tag food">Shinjuku Dining</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 21 -->
+            <div class="day-card" id="day-card-21">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 21 • Day 21</span> Flagship Shopping & Farewell Wagyu Dinner</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 21', 'Shopping & Farewell Dinner', 'Isetan Shinjuku, Takashimaya Times Square, tax-free Japanese snacks, premium Wagyu Sukiyaki dinner')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 21', 'Shopping & Farewell Dinner')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 21', 'Shinjuku Shopping & Wagyu')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag shop">Souvenirs & Fine Dining</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-bag-shopping"></i> 10:00 - 13:00</div>
+                        <div class="slot-details">
+                            <h4>Shinjuku Flagship Department Stores</h4>
+                            <p>Shop for tax-free goods, cosmetics, and Japanese souvenirs at Isetan Shinjuku, Takashimaya Times Square, and Don Quijote.</p>
+                            <div class="tags-container"><span class="tag shop">Isetan Shinjuku</span><span class="tag shop">Takashimaya Times Square</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-gift"></i> 13:30 - 17:00</div>
+                        <div class="slot-details">
+                            <h4>Last-minute Snack & Souvenir Packing</h4>
+                            <p>Pick up Japanese sweets (Tokyo Banana, matcha snacks) and organize suitcase packing at hotel base.</p>
+                            <div class="tags-container"><span class="tag shop">Japanese Souvenirs</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label evening"><i class="fa-solid fa-drumstick-bite"></i> 18:00 - 21:30</div>
+                        <div class="slot-details">
+                            <h4>Farewell Japan Premium Wagyu Dinner</h4>
+                            <p>Celebrate your final evening with a premium Wagyu beef Sukiyaki, Shabu-Shabu, or Yakiniku dinner in Shinjuku.</p>
+                            <div class="tags-container"><span class="tag food">Wagyu Sukiyaki Dinner</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 22 -->
+            <div class="day-card" id="day-card-22">
+                <div class="day-title-bar">
+                    <h3><span class="day-num">Oct 22 • Day 22</span> Final Airport Transit & Departure</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="ai-day-actions">
+                            <button class="ai-day-btn audio-btn" onclick="triggerDayAudio('Oct 22', 'Departure Day', 'Shinjuku cafe breakfast, Narita Express train or Limousine bus to airport, flying home')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                            <button class="ai-day-btn" onclick="triggerDayCustomize('Oct 22', 'Departure Day')"><i class="fa-solid fa-wand-magic-sparkles"></i> Customize</button>
+                            <button class="ai-day-btn" onclick="triggerDayAsk('Oct 22', 'Airport Departure')"><i class="fa-solid fa-sparkles"></i> Ask AI</button>
+                        </div>
+                        <span class="tag transit">Departure Day</span>
+                    </div>
+                </div>
+                <div class="timeline-grid">
+                    <div class="time-slot">
+                        <div class="time-label morning"><i class="fa-solid fa-suitcase"></i> 09:00 - 11:30</div>
+                        <div class="slot-details">
+                            <h4>Hotel Check-out & Final Morning Walk</h4>
+                            <p>Check out of hotel, store bags with bell desk, and enjoy a final Japanese cafe breakfast near Shinjuku Station.</p>
+                            <div class="tags-container"><span class="tag transit">Hotel Check-out</span></div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time-label afternoon"><i class="fa-solid fa-plane-departure"></i> 12:00 - 16:00</div>
+                        <div class="slot-details">
+                            <h4>Express Train / Bus to Airport</h4>
+                            <p>Board the Narita Express (N'EX) directly to Narita Airport or Airport Limousine Bus to Haneda Airport from Shinjuku Station. Fly home!</p>
+                            <div class="tags-container"><span class="tag transit">Narita Express</span><span class="tag transit">Airport Departure</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- AI MODAL CONTAINER -->
+    <div class="ai-modal-overlay" id="aiModalOverlay">
+        <div class="ai-modal">
+            <div class="ai-modal-header">
+                <h3><i class="fa-solid fa-sparkles" style="color:#a855f7"></i> Gemini Travel Assistant</h3>
+                <button class="ai-modal-close" onclick="closeAiModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="ai-modal-tabs">
+                <button class="ai-tab-btn active" id="tab-concierge" onclick="switchAiTab('concierge')"><i class="fa-solid fa-comments"></i> AI Concierge</button>
+                <button class="ai-tab-btn" id="tab-customizer" onclick="switchAiTab('customizer')"><i class="fa-solid fa-wand-magic-sparkles"></i> Day Customizer</button>
+                <button class="ai-tab-btn" id="tab-audio" onclick="switchAiTab('audio')"><i class="fa-solid fa-headphones"></i> Audio Guide</button>
+                <button class="ai-tab-btn" id="tab-phrases" onclick="switchAiTab('phrases')"><i class="fa-solid fa-language"></i> Phrase Helper</button>
+            </div>
+            <div class="ai-modal-body">
+                
+                <!-- TAB 1: AI CONCIERGE -->
+                <div class="ai-tab-content active" id="content-concierge">
+                    <div class="ai-input-group">
+                        <label for="conciergeQuery">Ask anything about your Japan itinerary:</label>
+                        <input type="text" id="conciergeQuery" class="ai-input-field" placeholder="e.g. What are the best vegetarian ramen spots in Ueno near Oct 1?">
+                        <div class="ai-checkbox-group">
+                            <input type="checkbox" id="useSearchGrounding" checked>
+                            <label for="useSearchGrounding">Use Google Search Grounding for live web information (weather, travel updates, opening hours)</label>
+                        </div>
+                    </div>
+                    <button class="ai-submit-btn" id="conciergeSubmitBtn" onclick="runConciergeQuery()">
+                        <i class="fa-solid fa-paper-plane"></i> Ask Gemini
+                    </button>
+                    <div class="ai-response-box" id="conciergeResponseBox" style="display:none;"></div>
+                </div>
+
+                <!-- TAB 2: DAY CUSTOMIZER -->
+                <div class="ai-tab-content" id="content-customizer">
+                    <div class="ai-input-group">
+                        <label for="customDaySelect">Select Day to Customize:</label>
+                        <select id="customDaySelect" class="ai-input-field">
+                            <option value="Oct 1 (Day 1): Arrival & Ueno">Oct 1 (Day 1): Arrival & Ueno</option>
+                            <option value="Oct 2 (Day 2): Asakusa & Skytree">Oct 2 (Day 2): Asakusa & Skytree</option>
+                            <option value="Oct 3 (Day 3): Tokyo Castle & Akihabara">Oct 3 (Day 3): Tokyo Castle (Imperial Palace) & Akihabara</option>
+                            <option value="Oct 4 (Day 4): Tsukiji & teamLab Planets">Oct 4 (Day 4): Tsukiji Market & teamLab Planets</option>
+                            <option value="Oct 5 (Day 5): Kappabashi & Ginza">Oct 5 (Day 5): Kappabashi Kitchenware Street & Ginza</option>
+                            <option value="Oct 6 (Day 6): Kyoto Arrival & Fushimi Inari">Oct 6 (Day 6): Kyoto Arrival & Fushimi Inari</option>
+                            <option value="Oct 7 (Day 7): Kiyomizu & Gion">Oct 7 (Day 7): Kiyomizu & Gion</option>
+                            <option value="Oct 8 (Day 8): Arashiyama & Kinkaku-ji">Oct 8 (Day 8): Arashiyama & Kinkaku-ji</option>
+                            <option value="Oct 9 (Day 9): Nara Day Trip">Oct 9 (Day 9): Nara Day Trip</option>
+                            <option value="Oct 10 (Day 10): Nijo Castle & Zen Gardens">Oct 10 (Day 10): Nijo Castle & Zen Gardens</option>
+                            <option value="Oct 11 (Day 11): Hiroshima Peace Memorial">Oct 11 (Day 11): Hiroshima Peace Memorial</option>
+                            <option value="Oct 12 (Day 12): Miyajima & Osaka Shinkansen">Oct 12 (Day 12): Miyajima Sacred Island & Osaka Shinkansen</option>
+                            <option value="Oct 13 (Day 13): Osaka Castle & Umeda Heights">Oct 13 (Day 13): Osaka Castle & Umeda Heights</option>
+                            <option value="Oct 14 (Day 14): Himeji Castle Day Trip">Oct 14 (Day 14): Himeji Castle Day Trip</option>
+                            <option value="Oct 15 (Day 15): USJ or Kaiyukan Aquarium">Oct 15 (Day 15): USJ or Kaiyukan Aquarium</option>
+                            <option value="Oct 16 (Day 16): Shinjuku & Golden Gai">Oct 16 (Day 16): Shinjuku & Golden Gai</option>
+                            <option value="Oct 17 (Day 17): Harajuku, Shibuya & Sunset Sky">Oct 17 (Day 17): Harajuku, Shibuya & Sunset Sky</option>
+                            <option value="Oct 18 (Day 18): Shinjuku Gyoen & City Tour">Oct 18 (Day 18): Shinjuku Gyoen & City Tour</option>
+                            <option value="Oct 19 (Day 19): Hakone & Mt. Fuji Trip">Oct 19 (Day 19): Hakone & Mt. Fuji Trip</option>
+                            <option value="Oct 20 (Day 20): Flexible Buffer Day">Oct 20 (Day 20): Flexible Buffer Day</option>
+                            <option value="Oct 21 (Day 21): Shopping & Farewell Dinner">Oct 21 (Day 21): Shopping & Farewell Dinner</option>
+                            <option value="Oct 22 (Day 22): Departure">Oct 22 (Day 22): Departure</option>
+                        </select>
+                    </div>
+                    <div class="ai-input-group">
+                        <label for="customPreferences">Your Special Preferences or Constraints:</label>
+                        <input type="text" id="customPreferences" class="ai-input-field" placeholder="e.g. Vegetarian diet, rainy weather, traveling with kids, anime focus, low walking distance">
+                    </div>
+                    <button class="ai-submit-btn" id="customizerSubmitBtn" onclick="runDayCustomizer()">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Personalized Day Schedule
+                    </button>
+                    <div class="ai-response-box" id="customizerResponseBox" style="display:none;"></div>
+                </div>
+
+                <!-- TAB 3: AUDIO TOUR GUIDE -->
+                <div class="ai-tab-content" id="content-audio">
+                    <div class="ai-input-group">
+                        <label for="audioTopicInput">Select Day or Topic for Spoken Audio Guide:</label>
+                        <input type="text" id="audioTopicInput" class="ai-input-field" value="Oct 1: Ueno Park & Ameyoko Market Walkthrough">
+                    </div>
+                    <button class="ai-submit-btn" id="audioSubmitBtn" onclick="runAudioGuide()">
+                        <i class="fa-solid fa-volume-high"></i> Generate Spoken Audio Guide
+                    </button>
+                    <div class="ai-audio-player" id="audioPlayerContainer" style="display:none;">
+                        <span style="font-size:13px; font-weight:700; color:#be185d;" id="audioStatusText"><i class="fa-solid fa-headphones"></i> Playing Audio Tour...</span>
+                        <audio id="geminiAudioPlayer" controls></audio>
+                    </div>
+                    <div class="ai-response-box" id="audioTextScript" style="display:none;"></div>
+                </div>
+
+                <!-- TAB 4: PHRASE HELPER -->
+                <div class="ai-tab-content" id="content-phrases">
+                    <div class="ai-input-group">
+                        <label for="phraseSituation">Select or Type Situation:</label>
+                        <select id="phraseSituation" class="ai-input-field">
+                            <option value="Ordering street food at Izakayas & Ameyoko Market">Ordering street food at Izakayas & Ameyoko Stalls</option>
+                            <option value="Asking for Tax-Free shopping & paying at Don Quijote">Asking for Tax-Free shopping & paying</option>
+                            <option value="Asking for train platform directions at Shinjuku / Kyoto Station">Navigating train stations & asking directions</option>
+                            <option value="Dietary restrictions (Vegetarian / Gluten-Free / No Pork)">Dietary restrictions (Vegetarian / No Pork)</option>
+                            <option value="Temple & Shrine etiquette (bowing, washing hands, offerings)">Temple & Shrine etiquette</option>
+                        </select>
+                    </div>
+                    <button class="ai-submit-btn" id="phrasesSubmitBtn" onclick="runPhraseHelper()">
+                        <i class="fa-solid fa-comments"></i> Generate Essential Japanese Phrases
+                    </button>
+                    <div class="ai-response-box" id="phrasesResponseBox" style="display:none;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🇯🇵 22-Day Japan Travel Master Schedule • Powered by Gemini AI Integration</p>
+    </footer>
+</div>
+
+<script>
+    function scrollToStage(stageId, btnElement) {
+        const targetEl = document.getElementById(stageId);
+        if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+        }
+        const buttons = document.querySelectorAll('.nav-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        if (btnElement) {
+            btnElement.classList.add('active');
+        } else if (window.event && window.event.target) {
+            window.event.target.classList.add('active');
+        }
+    }
+
+    const GEMINI_API_KEY = ""; // Automatically handled by runtime environment
+
+    async function fetchGeminiWithBackoff(url, options, maxRetries = 3) {
+        let delay = 1000;
+        for (let i = 0; i < maxRetries; i++) {
+            try {
+                const response = await fetch(url, options);
+                if (response.ok) return response;
+                if (response.status === 429 || response.status >= 500) {
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2;
+                    continue;
+                }
+                return response;
+            } catch (err) {
+                if (i === maxRetries - 1) throw err;
+                await new Promise(res => setTimeout(res, delay));
+                delay *= 2;
+            }
+        }
+    }
+
+    /* Modal Navigation */
+    function openAiModal(tabName) {
+        document.getElementById('aiModalOverlay').classList.add('active');
+        switchAiTab(tabName);
+    }
+
+    function closeAiModal() {
+        document.getElementById('aiModalOverlay').classList.remove('active');
+    }
+
+    function switchAiTab(tabName) {
+        const tabs = ['concierge', 'customizer', 'audio', 'phrases'];
+        tabs.forEach(t => {
+            const tabBtn = document.getElementById('tab-' + t);
+            const tabContent = document.getElementById('content-' + t);
+            if (tabBtn) tabBtn.classList.remove('active');
+            if (tabContent) tabContent.classList.remove('active');
+        });
+        const activeTabBtn = document.getElementById('tab-' + tabName);
+        const activeTabContent = document.getElementById('content-' + tabName);
+        if (activeTabBtn) activeTabBtn.classList.add('active');
+        if (activeTabContent) activeTabContent.classList.add('active');
+    }
+
+    /* Triggers from Day Cards */
+    function triggerDayAsk(dateStr, dayTitle) {
+        openAiModal('concierge');
+        document.getElementById('conciergeQuery').value = `What are the best tips, local food options, and logistics for ${dateStr} (${dayTitle})?`;
+        runConciergeQuery();
+    }
+
+    function triggerDayCustomize(dateStr, dayTitle) {
+        openAiModal('customizer');
+        const selectEl = document.getElementById('customDaySelect');
+        if (selectEl) {
+            for (let i = 0; i < selectEl.options.length; i++) {
+                if (selectEl.options[i].value.includes(`${dateStr}`)) {
+                    selectEl.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+    }
+
+    function triggerDayAudio(dateStr, dayTitle, summary) {
+        openAiModal('audio');
+        document.getElementById('audioTopicInput').value = `${dateStr}: ${dayTitle} - ${summary}`;
+        runAudioGuide();
+    }
+
+    async function runConciergeQuery() {
+        const query = document.getElementById('conciergeQuery').value.trim();
+        if (!query) return;
+
+        const useSearch = document.getElementById('useSearchGrounding').checked;
+        const btn = document.getElementById('conciergeSubmitBtn');
+        const box = document.getElementById('conciergeResponseBox');
+
+        btn.disabled = true;
+        btn.innerHTML = `<span class="ai-spinner"></span> Consulting Gemini...`;
+        box.style.display = 'block';
+        box.innerHTML = `<em>Asking Gemini AI Concierge...</em>`;
+
+        const systemPrompt = "You are an expert Japan travel concierge assisting a traveler on a 22-day journey (Tokyo, Kyoto, Hiroshima, Osaka, Shinjuku). Provide helpful, clear, and actionable travel tips.";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${GEMINI_API_KEY}`;
+
+        const payload = {
+            contents: [{ parts: [{ text: query }] }],
+            systemInstruction: { parts: [{ text: systemPrompt }] }
+        };
+
+        if (useSearch) {
+            payload.tools = [{ "google_search": {} }];
+        }
+
+        try {
+            const resp = await fetchGeminiWithBackoff(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const textResp = await resp.text();
+            let data = null;
+            try { data = textResp ? JSON.parse(textResp) : null; } catch(e) { console.error("JSON parse error:", e); }
+            
+            const candidate = data?.candidates?.[0];
+            
+            if (candidate && candidate.content?.parts?.[0]?.text) {
+                let answerHtml = candidate.content.parts[0].text;
+                
+                const sources = candidate.groundingMetadata?.groundingAttributions || [];
+                let sourcesHtml = '';
+                if (sources.length > 0) {
+                    sourcesHtml = '<div style="margin-top:15px; border-top:1px solid #e2e8f0; padding-top:10px; font-weight:600; font-size:12px;">Web Sources:</div>';
+                    sources.forEach(src => {
+                        if (src.web?.uri && src.web?.title) {
+                            sourcesHtml += `<a href="${src.web.uri}" target="_blank" class="ai-source-tag"><i class="fa-solid fa-link"></i> ${src.web.title}</a>`;
+                        }
+                    });
+                }
+                box.innerHTML = answerHtml + sourcesHtml;
+            } else {
+                box.innerHTML = "Unable to fetch response. Please try again.";
+            }
+        } catch (err) {
+            box.innerHTML = "Error connecting to AI service. Please check your connection.";
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Ask Gemini`;
+        }
+    }
+
+    async function runDayCustomizer() {
+        const dayVal = document.getElementById('customDaySelect').value;
+        const prefs = document.getElementById('customPreferences').value.trim() || 'No special dietary constraints, balanced pace';
+        const btn = document.getElementById('customizerSubmitBtn');
+        const box = document.getElementById('customizerResponseBox');
+
+        btn.disabled = true;
+        btn.innerHTML = `<span class="ai-spinner"></span> Tailoring Schedule...`;
+        box.style.display = 'block';
+        box.innerHTML = `<em>Generating custom itinerary for ${dayVal}...</em>`;
+
+        const userPrompt = `Re-plan and customize ${dayVal} of a Japan trip taking into account these traveler preferences: "${prefs}". Keep the main location intact but offer tailored time slots for morning, lunch, afternoon, and evening with alternative food and activities.`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${GEMINI_API_KEY}`;
+
+        try {
+            const resp = await fetchGeminiWithBackoff(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }] })
+            });
+            const textResp = await resp.text();
+            let data = null;
+            try { data = textResp ? JSON.parse(textResp) : null; } catch(e) { console.error("JSON parse error:", e); }
+            
+            const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (text) {
+                box.innerHTML = `<strong>✨ Custom Alternative Schedule for ${dayVal}</strong>\n\n` + text;
+            } else {
+                box.innerHTML = "Unable to customize schedule. Please try again.";
+            }
+        } catch (e) {
+            box.innerHTML = "Error contacting Gemini API.";
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> Generate Personalized Day Schedule`;
+        }
+    }
+
+    function base64ToArrayBuffer(base64) {
+        const binaryString = window.atob(base64);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        return bytes.buffer;
+    }
+
+    function pcmToWav(pcmData, sampleRate) {
+        const numChannels = 1;
+        const sampleBits = 16;
+        const buffer = new ArrayBuffer(44 + pcmData.length * 2);
+        const view = new DataView(buffer);
+
+        function writeString(v, offset, str) {
+            for (let i = 0; i < str.length; i++) {
+                v.setUint8(offset + i, str.charCodeAt(i));
+            }
+        }
+
+        writeString(view, 0, 'RIFF');
+        view.setUint32(4, 36 + pcmData.length * 2, true);
+        writeString(view, 8, 'WAVE');
+        writeString(view, 12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true);
+        view.setUint16(22, numChannels, true);
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * numChannels * (sampleBits / 8), true);
+        view.setUint16(32, numChannels * (sampleBits / 8), true);
+        view.setUint16(34, sampleBits, true);
+        writeString(view, 36, 'data');
+        view.setUint32(40, pcmData.length * 2, true);
+
+        let offset = 44;
+        for (let i = 0; i < pcmData.length; i++, offset += 2) {
+            view.setInt16(offset, pcmData[i], true);
+        }
+        return new Blob([buffer], { type: 'audio/wav' });
+    }
+
+    async function runAudioGuide() {
+        const topic = document.getElementById('audioTopicInput').value.trim();
+        const btn = document.getElementById('audioSubmitBtn');
+        const playerContainer = document.getElementById('audioPlayerContainer');
+        const scriptBox = document.getElementById('audioTextScript');
+
+        if (!topic) return;
+
+        btn.disabled = true;
+        btn.innerHTML = `<span class="ai-spinner"></span> Generating Audio Narration...`;
+        playerContainer.style.display = 'none';
+        scriptBox.style.display = 'block';
+        scriptBox.innerHTML = `<em>Writing & voicing tour guide narration for "${topic}"...</em>`;
+
+        const promptText = `Say enthusiastically like a friendly expert tour guide: Welcome to ${topic}! Let me give you a concise 40-second overview of what makes this day special, key sights to see, and a quick local food tip.`;
+        
+        const payload = {
+            contents: [{ parts: [{ text: promptText }] }],
+            generationConfig: {
+                responseModalities: ["AUDIO"],
+                speechConfig: {
+                    voiceConfig: {
+                        prebuiltVoiceConfig: { voiceName: "Kore" }
+                    }
+                }
+            },
+            model: "gemini-2.5-flash-preview-tts"
+        };
+
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${GEMINI_API_KEY}`;
+
+        try {
+            const resp = await fetchGeminiWithBackoff(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const textResp = await resp.text();
+            let result = null;
+            try { result = textResp ? JSON.parse(textResp) : null; } catch(e) { console.error("JSON parse error:", e); }
+
+            const part = result?.candidates?.[0]?.content?.parts?.[0];
+            const audioData = part?.inlineData?.data;
+            const mimeType = part?.inlineData?.mimeType;
+
+            if (audioData && mimeType) {
+                const sampleRateMatch = mimeType.match(/rate=(\d+)/);
+                const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 24000;
+                
+                const pcmBuffer = base64ToArrayBuffer(audioData);
+                const pcm16 = new Int16Array(pcmBuffer);
+                const wavBlob = pcmToWav(pcm16, sampleRate);
+                const audioUrl = URL.createObjectURL(wavBlob);
+
+                const audioPlayer = document.getElementById('geminiAudioPlayer');
+                audioPlayer.src = audioUrl;
+                playerContainer.style.display = 'flex';
+                scriptBox.innerHTML = `<strong>🎙️ Audio Guide Generated for ${topic}</strong>\nClick play above to listen to your AI travel companion.`;
+                audioPlayer.play();
+            } else {
+                scriptBox.innerHTML = "Could not generate audio stream. Please try again.";
+            }
+        } catch (e) {
+            scriptBox.innerHTML = "Error calling Gemini TTS service.";
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fa-solid fa-volume-high"></i> Generate Spoken Audio Guide`;
+        }
+    }
+
+    async function runPhraseHelper() {
+        const situation = document.getElementById('phraseSituation').value;
+        const btn = document.getElementById('phrasesSubmitBtn');
+        const box = document.getElementById('phrasesResponseBox');
+
+        btn.disabled = true;
+        btn.innerHTML = `<span class="ai-spinner"></span> Generating Japanese Phrases...`;
+        box.style.display = 'block';
+        box.innerHTML = `<em>Generating situation-specific phrases for "${situation}"...</em>`;
+
+        const userPrompt = `Provide 5 essential Japanese phrases for a tourist in this situation: "${situation}". For each phrase give: 1. English meaning, 2. Japanese Kanji/Kana, 3. Romaji pronunciation guide, 4. A brief etiquette or cultural tip.`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${GEMINI_API_KEY}`;
+
+        try {
+            const resp = await fetchGeminiWithBackoff(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }] })
+            });
+            const textResp = await resp.text();
+            let data = null;
+            try { data = textResp ? JSON.parse(textResp) : null; } catch(e) { console.error("JSON parse error:", e); }
+
+            const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (text) {
+                box.innerHTML = `<strong>🗣️ Essential Japanese Phrasebook & Etiquette Guide</strong>\n\n` + text;
+            } else {
+                box.innerHTML = "Unable to generate phrases.";
+            }
+        } catch (e) {
+            box.innerHTML = "Error fetching phrasebook.";
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fa-solid fa-comments"></i> Generate Essential Japanese Phrases`;
+        }
+    }
+</script>
+
+</body>
+</html>
